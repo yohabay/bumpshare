@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BumpShare</string>
+    <string name="hce_service_description">BumpShare NFC profile sharing</string>
+    <string name="hce_aid_group_description">BumpShare shared profile</string>
+</resources>
