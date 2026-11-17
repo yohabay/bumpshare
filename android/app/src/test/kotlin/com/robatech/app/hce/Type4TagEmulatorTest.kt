@@ -106,6 +106,6 @@ class Type4TagEmulatorTest {
     }
 
     private companion object {
-        const val URI = "https://bumpshare.app/p/demo"
+        const val URI = "https://yohabay.github.io/bumpshare/p/demo"
     }
 }

@@ -10,7 +10,7 @@ profile and can save the contact without installing anything.
    the device.
 2. **Share Contact Card** arms Android Host Card Emulation with a single NDEF URI
    record:
-   `https://bumpshare.app/p/#<base64url profile>`.
+   `https://yohabay.github.io/bumpshare/p/#<base64url profile>`.
 3. The receiver taps. Stock Android opens the link in the browser; iPhone shows
    its standard NFC notification, which opens the same link.
 4. The static page in `web_profile/` decodes the profile from the URL fragment

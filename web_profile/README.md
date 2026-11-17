@@ -14,8 +14,8 @@ Pick **one** of these free static hosts:
 
 | Host | How the file lands at the right path | Time to set up |
 |---|---|---|
-| GitHub Pages | workflow stages `web_profile/index.html` → `p/index.html`, then custom domain `bumpshare.app` → page live at `https://bumpshare.app/p/` | 2 min |
-| Cloudflare Pages | connect repo, set output dir to repo root (the workflow's staging aside, you can also just commit a `p/index.html`) | 5 min |
+| GitHub Pages | workflow stages `web_profile/index.html` → `p/index.html`, deploys to `https://yohabay.github.io/bumpshare/p/` | 2 min |
+| Cloudflare Pages | connect repo, set output dir to repo root | 5 min |
 | Netlify | connect repo, set publish directory to repo root | 3 min |
 | Vercel | connect repo, set output dir to repo root | 3 min |
 
@@ -25,17 +25,16 @@ This repo already has `.github/workflows/deploy-pages.yml`. Push to `main` and
 GitHub Pages deploys the staged page automatically.
 
 1. Repo → **Settings → Pages → Source: GitHub Actions**.
-2. Add a **Custom domain** `bumpshare.app` (DNS must point at GitHub Pages).
-3. After the first run, the page is live at
-   `https://bumpshare.app/p/`.
-4. Set `kProfileBaseUrl` in `lib/app_config.dart` to that base URL **ending in `/`**
-   (e.g. `https://bumpshare.app/p/`) and rebuild the app.
+2. After the first run, the page is live at
+   `https://yohabay.github.io/bumpshare/p/`.
+3. Set `kProfileBaseUrl` in `lib/app_config.dart` to that base URL **ending in `/`**
+   (e.g. `https://yohabay.github.io/bumpshare/p/`) and rebuild the app.
 
 ### Manual upload (any host)
 
 1. Publish `web_profile/index.html` as the index of the path in
    `kProfileBaseUrl` (`lib/app_config.dart`). Default:
-   `https://bumpshare.app/p/` → the file must end up at `/p/index.html`.
+   `https://yohabay.github.io/bumpshare/p/` → the file must end up at `/p/index.html`.
 2. Any static host works: Netlify, Vercel, Cloudflare Pages, GitHub Pages or
    Firebase Hosting. (The GitHub Actions workflow already stages it into `p/`.)
 3. If your URL differs, change `kProfileBaseUrl` to the full directory URL
@@ -46,7 +45,7 @@ GitHub Pages deploys the staged page automatically.
 The app shares links like:
 
 ```
-https://bumpshare.app/p/#<base64url-json>
+https://yohabay.github.io/bumpshare/p/#<base64url-json>
 ```
 
 The page reads everything after `#`; nothing is sent to a server.
