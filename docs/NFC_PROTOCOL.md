@@ -9,7 +9,7 @@ The receiver needs no BumpShare app; the stock OS handles the tag.
  ┌──────────────────────┐                   ┌───────────────────────────────┐
  │ Flutter UI            │  startSharing(uri)│ NFC stack (no app)            │
  │ MethodChannel         │ ─────────────────►│ reads NDEF URI                 │
- │ NdefHceService        │                   │ opens https://yohabay.github.io/bumpshare/p/… │
+ │ NdefHceService        │                   │ opens https://bumpshare.vercel.app/… │
  │ Type4TagEmulator      │ ◄──── APDUs ──────│ browser / Safari notification  │
  └──────────────────────┘                   └───────────────────────────────┘
 ```
@@ -86,7 +86,7 @@ The message is a single **TNF = Well Known (0x01)** record, type `U` (RTD URI):
 - Header `0xD1` for the short form (`MB=1, ME=1, SR=1, TNF=001`), `0xC1` for the
   long form.
 - Payload: one prefix byte + UTF-8 suffix. `https://` uses prefix `0x04`.
-- The URI is `https://yohabay.github.io/bumpshare/p/#<base64url-json>`.
+- The URI is `https://bumpshare.vercel.app/#<base64url-json>`.
 
 The fragment encodes `{n: name, p: phone, e: email, l: [links]}`. Fragments are
 never sent to a server; the static page at `web_profile/index.html` decodes it

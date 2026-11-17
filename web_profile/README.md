@@ -14,29 +14,32 @@ Pick **one** of these free static hosts:
 
 | Host | How the file lands at the right path | Time to set up |
 |---|---|---|
-| GitHub Pages | workflow stages `web_profile/index.html` → `p/index.html`, deploys to `https://yohabay.github.io/bumpshare/p/` | 2 min |
-| Cloudflare Pages | connect repo, set output dir to repo root | 5 min |
-| Netlify | connect repo, set publish directory to repo root | 3 min |
-| Vercel | connect repo, set output dir to repo root | 3 min |
+| **Vercel** | deploy the folder that contains the page (`web_profile/`) | 3 min |
+| Cloudflare Pages | direct upload / repo | 5 min |
+| Netlify | drop / repo | 3 min |
 
-### GitHub Pages (one-click via workflow)
+### Vercel (recommended now)
 
-This repo already has `.github/workflows/deploy-pages.yml`. Push to `main` and
-GitHub Pages deploys the staged page automatically.
+The page is a single static file, so Vercel is a one-command deploy:
 
-1. Repo → **Settings → Pages → Source: GitHub Actions**.
-2. After the first run, the page is live at
-   `https://yohabay.github.io/bumpshare/p/`.
-3. Set `kProfileBaseUrl` in `lib/app_config.dart` to that base URL **ending in `/`**
-   (e.g. `https://yohabay.github.io/bumpshare/p/`) and rebuild the app.
+```bash
+npx vercel deploy --prod
+```
+
+Run it from the directory that contains the page (for example `web_profile/`, or
+a staging folder that holds `p/index.html` if you want the `/p/` path).
+
+After the deploy finishes, set `kProfileBaseUrl` in `lib/app_config.dart` to the
+resulting base URL **ending in `/`** (default now: `https://bumpshare.vercel.app/`)
+and rebuild the app.
 
 ### Manual upload (any host)
 
 1. Publish `web_profile/index.html` as the index of the path in
    `kProfileBaseUrl` (`lib/app_config.dart`). Default:
-   `https://yohabay.github.io/bumpshare/p/` → the file must end up at `/p/index.html`.
-2. Any static host works: Netlify, Vercel, Cloudflare Pages, GitHub Pages or
-   Firebase Hosting. (The GitHub Actions workflow already stages it into `p/`.)
+   `https://bumpshare.vercel.app/` → the file must end up at `/index.html`.
+2. Any static host works: Vercel, Netlify, Cloudflare Pages, GitHub Pages or
+   Firebase Hosting.
 3. If your URL differs, change `kProfileBaseUrl` to the full directory URL
    **ending in `/`** and rebuild the app.
 
@@ -45,7 +48,7 @@ GitHub Pages deploys the staged page automatically.
 The app shares links like:
 
 ```
-https://yohabay.github.io/bumpshare/p/#<base64url-json>
+https://bumpshare.vercel.app/#<base64url-json>
 ```
 
 The page reads everything after `#`; nothing is sent to a server.
