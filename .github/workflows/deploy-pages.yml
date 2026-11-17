@@ -26,8 +26,8 @@ jobs:
 
       - name: Stage profile page at /p/
         run: |
-          mkdir -p p
-          cp web_profile/index.html p/index.html
+          mkdir -p staged/p
+          cp web_profile/index.html staged/p/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -35,4 +35,4 @@ jobs:
       - name: Upload profile page
         uses: actions/upload-pages-artifact@v3
         with:
-          path: p
+          path: staged
