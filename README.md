@@ -10,7 +10,7 @@ profile and can save the contact without installing anything.
    the device.
 2. **Share Contact Card** arms Android Host Card Emulation with a single NDEF URI
    record:
-   `https://bumpshare.vercel.app/#<base64url profile>`.
+   `https://bumbshare.vercel.app/#<base64url profile>`.
 3. The receiver taps. Stock Android opens the link in the browser; iPhone shows
    its standard NFC notification, which opens the same link.
 4. The static page in `web_profile/` decodes the profile from the URL fragment
@@ -69,8 +69,8 @@ flutter build appbundle --release  # signed .aab, only for Play upload
 ```
 
 Release signing uses `android/key.properties` + `android/app/bumpshare-upload.jks`
-(both git-ignored), with application ID `com.robatech.app`. Hosting
-`web_profile/index.html` at `kProfileBaseUrl` is the one remaining release task
+(both git-ignored), with application ID `com.robatech.app`. The receiver page is
+deployed at `kProfileBaseUrl`; keep it live for every release
 (see `docs/LIMITATIONS.md`).
 
 ## Status
@@ -81,7 +81,7 @@ Release signing uses `android/key.properties` + `android/app/bumpshare-upload.jk
 - [x] Static profile page
 - [x] Launcher icon (adaptive, all densities)
 - [x] Release signing keystore + application ID `com.robatech.app`
-- [ ] Deploy the profile page at `kProfileBaseUrl`
+- [x] Deploy the profile page at `kProfileBaseUrl`
 - [ ] Real-device validation on stock Android and iPhone (see `docs/TESTING.md`)
 
 ## Documentation

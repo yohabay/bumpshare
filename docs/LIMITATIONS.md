@@ -36,9 +36,9 @@
       both git-ignored). Back these up; they cannot be regenerated.
 - [x] Branded adaptive launcher icons in every density
       (`android/app/src/main/res/mipmap-*`).
-- [ ] Deploy `web_profile/index.html` and set `kProfileBaseUrl` in
-      `lib/app_config.dart` to your live URL.
-- [ ] Build the signed `.aab` only when the two items above are final
+- [x] Deploy `web_profile/index.html` at `https://bumbshare.vercel.app/` and set
+      `kProfileBaseUrl` in `lib/app_config.dart` to that live URL.
+- [ ] Build the signed `.aab` for Play upload
       (`flutter build appbundle --release`).
 - [ ] Privacy policy + accurate Data Safety declaration (the app sends no data
       to BumpShare servers; the profile is shared peer-to-peer over NFC).

@@ -9,7 +9,7 @@ record, which iPhone's NFC stack reads like any NFC tag.
 2. iPhone (XS or newer, NFC enabled, unlocked at least once since restart) is
    held near the sender.
 3. iOS detects the NDEF URI and shows its NFC notification/banner.
-4. The user taps the notification; Safari opens `https://bumpshare.vercel.app/`.
+4. The user taps the notification; Safari opens `https://bumbshare.vercel.app/`.
 5. The static page renders the contact and offers **Save contact**.
 
 ## Conditions / caveats

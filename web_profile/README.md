@@ -30,14 +30,14 @@ Run it from the directory that contains the page (for example `web_profile/`, or
 a staging folder that holds `p/index.html` if you want the `/p/` path).
 
 After the deploy finishes, set `kProfileBaseUrl` in `lib/app_config.dart` to the
-resulting base URL **ending in `/`** (default now: `https://bumpshare.vercel.app/`)
+resulting base URL **ending in `/`** (default now: `https://bumbshare.vercel.app/`)
 and rebuild the app.
 
 ### Manual upload (any host)
 
 1. Publish `web_profile/index.html` as the index of the path in
    `kProfileBaseUrl` (`lib/app_config.dart`). Default:
-   `https://bumpshare.vercel.app/` → the file must end up at `/index.html`.
+   `https://bumbshare.vercel.app/` → the file must end up at `/index.html`.
 2. Any static host works: Vercel, Netlify, Cloudflare Pages, GitHub Pages or
    Firebase Hosting.
 3. If your URL differs, change `kProfileBaseUrl` to the full directory URL
@@ -48,7 +48,7 @@ and rebuild the app.
 The app shares links like:
 
 ```
-https://bumpshare.vercel.app/#<base64url-json>
+https://bumbshare.vercel.app/#<base64url-json>
 ```
 
 The page reads everything after `#`; nothing is sent to a server.

@@ -42,7 +42,7 @@ flutter run -d <device-id>
 ### Receiver — stock Android
 
 - [ ] Phone with NFC enabled and **no BumpShare installed** receives the tap.
-- [ ] Browser opens the `https://…/p/#…` link.
+- [ ] Browser opens the `https://bumbshare.vercel.app/#…` link.
 - [ ] Page shows the correct name, phone, email and links.
 - [ ] Each link shows its platform mark and a short `domain/path` label.
 - [ ] **Save contact** downloads/opens a vCard that can be imported.

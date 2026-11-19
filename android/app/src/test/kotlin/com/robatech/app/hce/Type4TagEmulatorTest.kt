@@ -106,6 +106,6 @@ class Type4TagEmulatorTest {
     }
 
     private companion object {
-        const val URI = "https://bumpshare.vercel.app/demo"
+        const val URI = "https://bumbshare.vercel.app/demo"
     }
 }
