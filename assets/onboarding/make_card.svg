@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Make your card">
+  <defs>
+    <radialGradient id="bg1" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#F5F3FF"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </radialGradient>
+    <linearGradient id="phone1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5F3FF"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    </defs>
+  <!-- background -->
+  <rect width="320" height="320" rx="48" fill="url(#bg1)"/>
+  <circle cx="60" cy="60" r="90" fill="#DDD6FE" opacity="0.35"/>
+  <circle cx="270" cy="260" r="110" fill="#C4B5FD" opacity="0.25"/>
+  <!-- decorative sparkles -->
+  <path d="M46 90 L50 78 L54 90 L66 94 L54 98 L50 110 L46 98 L34 94 Z" fill="#A78BFA" opacity="0.7"/>
+  <path d="M270 70 L273 62 L276 70 L284 73 L276 76 L273 84 L270 76 L262 73 Z" fill="#8B5CF6" opacity="0.6"/>
+  <!-- phone -->
+  <g>
+    <rect x="92" y="36" width="136" height="248" rx="26" fill="url(#phone1)"/>
+    <rect x="100" y="52" width="120" height="216" rx="18" fill="#FFFFFF"/>
+  </g>
+  <!-- notch -->
+  <rect x="140" y="58" width="40" height="6" rx="3" fill="#EDE9FE"/>
+  <!-- card -->
+  <g>
+    <rect x="112" y="78" width="96" height="74" rx="14" fill="url(#card1)" stroke="#EDE9FE" stroke-width="1"/>
+  </g>
+  <!-- card header band -->
+  <rect x="112" y="78" width="96" height="26" rx="14" fill="url(#accent1)"/>
+  <rect x="112" y="90" width="96" height="14" fill="url(#accent1)"/>
+  <!-- avatar -->
+  <circle cx="132" cy="91" r="11" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="132" cy="89" r="4.5" fill="#6D28D9"/>
+  <path d="M124 99 Q132 95 140 99" fill="#6D28D9"/>
+  <!-- name lines -->
+  <rect x="148" y="84" width="46" height="6" rx="3" fill="#FFFFFF"/>
+  <rect x="148" y="94" width="34" height="4" rx="2" fill="#C4B5FD"/>
+  <!-- contact rows -->
+  <g>
+    <circle cx="124" cy="124" r="7" fill="#EDE9FE"/>
+    <path d="M120 124 L124 128 L130 120" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="138" y="120" width="52" height="5" rx="2.5" fill="#DDD6FE"/>
+    <rect x="138" y="129" width="38" height="4" rx="2" fill="#EDE9FE"/>
+  </g>
+  <g>
+    <circle cx="124" cy="142" r="7" fill="#EDE9FE"/>
+    <circle cx="124" cy="142" r="2.5" fill="#6D28D9"/>
+    <rect x="138" y="138" width="46" height="5" rx="2.5" fill="#DDD6FE"/>
+    <rect x="138" y="147" width="30" height="4" rx="2" fill="#EDE9FE"/>
+  </g>
+  <!-- social chips -->
+  <rect x="112" y="168" width="26" height="18" rx="9" fill="#6D28D9"/>
+  <rect x="142" y="168" width="26" height="18" rx="9" fill="#8B5CF6"/>
+  <rect x="172" y="168" width="26" height="18" rx="9" fill="#A78BFA"/>
+  <circle cx="125" cy="177" r="3" fill="#FFFFFF"/>
+  <circle cx="155" cy="177" r="3" fill="#FFFFFF"/>
+  <circle cx="185" cy="177" r="3" fill="#FFFFFF"/>
+  <!-- bottom dots -->
+  <circle cx="124" cy="200" r="3" fill="#C4B5FD"/>
+  <circle cx="136" cy="200" r="3" fill="#C4B5FD"/>
+  <circle cx="148" cy="200" r="3" fill="#C4B5FD"/>
+  <circle cx="160" cy="200" r="3" fill="#C4B5FD"/>
+  <circle cx="172" cy="200" r="3" fill="#C4B5FD"/>
+  <circle cx="184" cy="200" r="3" fill="#C4B5FD"/>
+  <!-- floating tag -->
+  <g>
+    <rect x="200" y="118" width="74" height="30" rx="15" fill="#FFFFFF"/>
+  </g>
+  <circle cx="216" cy="133" r="7" fill="#10B981"/>
+  <path d="M212 133 L215 136 L220 130" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="228" y="129" width="36" height="5" rx="2.5" fill="#DDD6FE"/>
+  <rect x="228" y="138" width="24" height="4" rx="2" fill="#EDE9FE"/>
+</svg>

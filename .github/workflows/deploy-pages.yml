@@ -1,19 +1,15 @@
 name: Deploy BumpShare profile page
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,15 +19,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Stage profile page at /p/
         run: |
           mkdir -p staged/p
           cp web_profile/index.html staged/p/index.html
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Upload profile page
         uses: actions/upload-pages-artifact@v3
         with:

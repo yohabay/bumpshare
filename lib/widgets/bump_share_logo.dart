@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-
-/// BumpShare wordmark mark: gradient NFC icon tile + wordmark text.
 class BumpShareLogo extends StatelessWidget {
   const BumpShareLogo({super.key, this.size = 96.0, this.showIcon = true});
-
   final double size;
   final bool showIcon;
-
   @override
   Widget build(BuildContext context) {
     return Column(

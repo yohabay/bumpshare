@@ -1,5 +1,4 @@
 package com.robatech.app.hce
-
 /**
  * Capability container (CC) for the emulated NFC Forum Type 4 tag.
  *

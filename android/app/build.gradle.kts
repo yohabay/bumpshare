@@ -1,29 +1,23 @@
 import java.io.FileInputStream
 import java.util.Properties
-
 plugins {
     id("com.android.application")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
-
 val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
         FileInputStream(keystorePropertiesFile).use { load(it) }
     }
 }
-
 android {
     namespace = "com.robatech.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     defaultConfig {
         applicationId = "com.robatech.app"
         minSdk = flutter.minSdkVersion
@@ -31,7 +25,6 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-
     signingConfigs {
         create("release") {
             if (keystorePropertiesFile.exists()) {
@@ -42,7 +35,6 @@ android {
             }
         }
     }
-
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("debug")
@@ -52,18 +44,15 @@ android {
         }
     }
 }
-
 dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("com.google.truth:truth:1.4.4")
 }
-
 kotlin {
     compilerOptions {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
-
 flutter {
     source = "../.."
 }

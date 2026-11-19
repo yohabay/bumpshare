@@ -4,11 +4,9 @@
 #
 #   powershell -NoProfile -ExecutionPolicy Bypass -File tools/fetch_brand_logos.ps1
 Add-Type -AssemblyName System.Web
-
 $root = Split-Path -Parent $PSScriptRoot
 $page = Join-Path $root 'web_profile\index.html'
 if (-not (Test-Path $page)) { throw "Missing $page" }
-
 # slug => brand hex colour used by simple-icons
 $brands = [ordered]@{
     linkedin  = '0A66C2'
@@ -23,7 +21,6 @@ $brands = [ordered]@{
     threads   = '111111'
     snapchat  = '111111'
 }
-
 $lines = @()
 foreach ($slug in $brands.Keys) {
     $url = "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/${slug}.svg"
@@ -40,17 +37,14 @@ foreach ($slug in $brands.Keys) {
     $escaped = $svg.Replace('\', '\\').Replace("'", "\'")
     $lines += "      ${slug}: '$escaped',"
 }
-
 $html = [IO.File]::ReadAllText($page)
 $start = '/* LOGOS:START */'
 $end = '/* LOGOS:END */'
 $i = $html.IndexOf($start)
 $j = $html.IndexOf($end)
 if ($i -lt 0 -or $j -lt 0 -or $j -lt $i) { throw 'LOGOS markers not found in index.html' }
-
 $before = $html.Substring(0, $i + $start.Length)
 $after = $html.Substring($j)
 $html = $before + "`r`n" + ($lines -join "`r`n") + "`r`n      " + $after
-
 [IO.File]::WriteAllText($page, $html, (New-Object System.Text.UTF8Encoding($false)))
 Write-Output "Inlined $($brands.Count) brand logos into web_profile/index.html"

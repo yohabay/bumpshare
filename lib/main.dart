@@ -1,40 +1,63 @@
 import 'package:flutter/material.dart';
-
+import 'models/profile.dart';
 import 'screens/business_card_screen.dart';
+import 'screens/cards_screen.dart';
 import 'screens/edit_profile_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/splash_screen.dart';
 import 'screens/sharing_screen.dart';
 import 'screens/success_screen.dart';
+import 'services/app_theme.dart';
 import 'services/bump_share_nfc.dart';
-
-void main() {
+import 'services/profile_store.dart';
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BumpShareNfcService.instance.registerNativeHandlers();
-  runApp(const BumpShareApp());
+  final bool onboarded = await ProfileStore.isOnboardingComplete();
+  final Profile savedProfile = await ProfileStore.load();
+  await AppTheme.initialize(savedProfile.themeIndex);
+  runApp(BumpShareApp(
+    home: onboarded ? const SplashScreen() : const OnboardingScreen(),
+  ));
 }
-
-class BumpShareApp extends StatelessWidget {
+class BumpShareApp extends StatefulWidget {
   const BumpShareApp({super.key, this.home = const HomeScreen()});
-
-  /// The first screen. Overridable so tooling can render individual screens
-  /// with the exact same theme the shipped app uses.
   final Widget home;
+  @override
+  State<BumpShareApp> createState() => _BumpShareAppState();
+}
+class _BumpShareAppState extends State<BumpShareApp> {
+  @override
+  void initState() {
+    super.initState();
+    AppTheme.accentIndex.addListener(_onAccentChanged);
+  }
+
+  void _onAccentChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    AppTheme.accentIndex.removeListener(_onAccentChanged);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = ColorScheme.fromSeed(
-      seedColor: const Color(0xFF6D28D9),
+      seedColor: AppTheme.accent,
       brightness: Brightness.light,
     );
-
     return MaterialApp(
       title: 'BumpShare',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: colorScheme,
-        scaffoldBackgroundColor: const Color(0xFFF8F7FC),
+        scaffoldBackgroundColor: colorScheme.surfaceContainerLowest,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           elevation: 0,
@@ -62,8 +85,8 @@ class BumpShareApp extends StatelessWidget {
         ),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
-            backgroundColor: colorScheme.primaryContainer,
-            foregroundColor: colorScheme.onPrimaryContainer,
+            backgroundColor: colorScheme.primary,
+            foregroundColor: colorScheme.onPrimary,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
@@ -87,11 +110,16 @@ class BumpShareApp extends StatelessWidget {
           ),
         ),
       ),
-      home: home,
+      home: widget.home,
       routes: <String, WidgetBuilder>{
-        '/sharing': (BuildContext context) => const SharingScreen(),
+        '/sharing': (BuildContext context) => SharingScreen(
+              shareUrl: ModalRoute.of(context)?.settings.arguments as String?,
+            ),
         '/profile': (BuildContext context) => const ProfileScreen(),
-        '/edit': (BuildContext context) => const EditProfileScreen(),
+        '/edit': (BuildContext context) => EditProfileScreen(
+              initial: ModalRoute.of(context)?.settings.arguments as Profile?,
+            ),
+        '/cards': (BuildContext context) => const CardsScreen(),
         '/card': (BuildContext context) => const BusinessCardScreen(),
         '/success': (BuildContext context) => const SuccessScreen(),
       },

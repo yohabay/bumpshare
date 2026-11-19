@@ -1,7 +1,8 @@
 package com.robatech.app
-
 import android.content.ComponentName
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.LayerDrawable
 import android.nfc.NfcAdapter
 import android.nfc.cardemulation.CardEmulation
 import android.os.Bundle
@@ -11,11 +12,28 @@ import android.provider.Settings
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-
 class MainActivity : FlutterActivity() {
-
     private lateinit var channel: MethodChannel
     private val mainHandler = Handler(Looper.getMainLooper())
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        applyAccentToLaunchScreen()
+    }
+
+    /** Tints the native launch screen with the colour saved for the active card. */
+    private fun applyAccentToLaunchScreen() {
+        val prefs = getSharedPreferences("FlutterSharedPreferences", MODE_PRIVATE)
+        val accent = prefs.getInt("flutter.bumpshare_app_accent", -1)
+        if (accent == -1) return
+        runCatching {
+            (resources.getDrawable(R.drawable.launch_background, theme) as? LayerDrawable)?.let {
+                (it.getDrawable(0) as? ColorDrawable)?.color = accent
+                window.setBackgroundDrawable(it)
+            }
+            window.statusBarColor = accent
+        }
+    }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -37,14 +55,11 @@ class MainActivity : FlutterActivity() {
             }
         }
     }
-
     private fun adapter(): NfcAdapter? = NfcAdapter.getDefaultAdapter(this)
-
     private fun isHceSupported(): Boolean =
         packageManager.hasSystemFeature(
             android.content.pm.PackageManager.FEATURE_NFC_HOST_CARD_EMULATION
         )
-
     private fun startSharing(uri: String?): Boolean {
         if (uri.isNullOrBlank()) return false
         val nfc = adapter() ?: return false
@@ -56,24 +71,20 @@ class MainActivity : FlutterActivity() {
             true
         }.getOrDefault(false)
     }
-
     private fun stopSharing(): Boolean = runCatching {
         adapter()?.let { CardEmulation.getInstance(it).unsetPreferredService(this) }
         NdefHceService.currentUri = null
         true
     }.getOrDefault(false)
-
     private fun openNfcSettings(): Boolean = runCatching {
         startActivity(Intent(Settings.ACTION_NFC_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         true
     }.getOrDefault(false)
-
     override fun onDestroy() {
         NdefHceService.onTapCallback = null
         runCatching { stopSharing() }
         super.onDestroy()
     }
-
     companion object {
         const val NFC_METHOD_CHANNEL = "bumpshare_nfc"
     }

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Bump to share">
+  <defs>
+    <radialGradient id="bg2" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#F5F3FF"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </radialGradient>
+    <linearGradient id="back2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B0764"/>
+    </linearGradient>
+    <linearGradient id="edge2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="48" fill="url(#bg2)"/>
+  <circle cx="70" cy="70" r="100" fill="#DDD6FE" opacity="0.35"/>
+  <circle cx="250" cy="250" r="120" fill="#C4B5FD" opacity="0.25"/>
+  <!-- sparkles -->
+  <path d="M46 100 L50 88 L54 100 L66 104 L54 108 L50 120 L46 108 L34 104 Z" fill="#A78BFA" opacity="0.7"/>
+  <path d="M266 220 L269 212 L272 220 L280 223 L272 226 L269 234 L266 226 L258 223 Z" fill="#8B5CF6" opacity="0.6"/>
+  <!-- left phone back (tilted, back facing right) -->
+  <g transform="rotate(-18 118 160)">
+    <rect x="70" y="52" width="96" height="200" rx="20" fill="url(#back2)"/>
+    <!-- camera module -->
+    <rect x="82" y="64" width="44" height="44" rx="10" fill="#1E1B4B" opacity="0.85"/>
+    <circle cx="94" cy="76" r="7" fill="#0F0A1F"/>
+    <circle cx="94" cy="76" r="3.5" fill="#312E81"/>
+    <circle cx="114" cy="76" r="7" fill="#0F0A1F"/>
+    <circle cx="114" cy="76" r="3.5" fill="#312E81"/>
+    <circle cx="94" cy="96" r="7" fill="#0F0A1F"/>
+    <circle cx="94" cy="96" r="3.5" fill="#312E81"/>
+    <circle cx="104" cy="86" r="3" fill="#FBBF24" opacity="0.9"/>
+    <!-- brand mark -->
+    <circle cx="118" cy="232" r="6" fill="#FFFFFF" opacity="0.25"/>
+  </g>
+  <!-- right phone back (tilted, back facing left) -->
+  <g transform="rotate(18 202 160)">
+    <rect x="154" y="52" width="96" height="200" rx="20" fill="url(#back2)"/>
+    <rect x="194" y="64" width="44" height="44" rx="10" fill="#1E1B4B" opacity="0.85"/>
+    <circle cx="206" cy="76" r="7" fill="#0F0A1F"/>
+    <circle cx="206" cy="76" r="3.5" fill="#312E81"/>
+    <circle cx="226" cy="76" r="7" fill="#0F0A1F"/>
+    <circle cx="226" cy="76" r="3.5" fill="#312E81"/>
+    <circle cx="206" cy="96" r="7" fill="#0F0A1F"/>
+    <circle cx="206" cy="96" r="3.5" fill="#312E81"/>
+    <circle cx="216" cy="86" r="3" fill="#FBBF24" opacity="0.9"/>
+    <circle cx="202" cy="232" r="6" fill="#FFFFFF" opacity="0.25"/>
+  </g>
+  <!-- NFC contact point / ripple at the bump -->
+  <circle cx="160" cy="160" r="16" fill="#6D28D9" opacity="0.9"/>
+  <circle cx="160" cy="160" r="8" fill="#FFFFFF"/>
+  <circle cx="160" cy="160" r="30" fill="none" stroke="url(#edge2)" stroke-width="4" opacity="0.9"/>
+  <circle cx="160" cy="160" r="46" fill="none" stroke="#8B5CF6" stroke-width="3" opacity="0.6"/>
+  <circle cx="160" cy="160" r="62" fill="none" stroke="#A78BFA" stroke-width="2.5" opacity="0.35"/>
+  <!-- flying contact card -->
+  <g>
+    <rect x="128" y="118" width="64" height="40" rx="8" fill="#FBBF24"/>
+    <circle cx="142" cy="138" r="6" fill="#FFFFFF"/>
+    <rect x="152" y="132" width="30" height="4" rx="2" fill="#FFFFFF"/>
+    <rect x="152" y="140" width="22" height="3" rx="1.5" fill="#FFFFFF" opacity="0.85"/>
+  </g>
+  <!-- arrow hint -->
+  <path d="M140 170 Q160 150 180 170" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M176 166 L180 170 L176 174" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <!-- success badge -->
+  <circle cx="160" cy="244" r="22" fill="#10B981"/>
+  <path d="M149 244 L157 252 L173 234" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

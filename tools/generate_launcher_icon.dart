@@ -1,44 +1,30 @@
 import 'dart:io';
-
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-
 import 'package:flutter_test/flutter_test.dart';
-
-/// One-off generator for the launcher icon source images.
-/// Uses the exact brand color and Material NFC glyph from BumpShareLogo.
 void main() {
   test('render launcher icon sources', () async {
     TestWidgetsFlutterBinding.ensureInitialized();
-
     const double canvasSize = 1024;
     const ui.Color brand = ui.Color(0xFF6D28D9);
-
-    // Material Icons `nfc` glyph (Icons.nfc, 24px), from
-    // material-design-icons/src/device/nfc/materialicons/24px.svg
     const String nfcPath =
         'M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H4V4h16v16zM18 6h-5c-1.1 0-2 .9-2 2v2.28c-.6.35-1 .98-1 1.72 0 1.1.9 2 2 2s2-.9 2-2c0-.74-.4-1.38-1-1.72V8h3v8H8V8h2V6H6v12h12V6z';
-
     final List<_Cmd> commands = _parseSvgPath(nfcPath);
-
     Future<void> render({
       required String path,
       required bool withBackground,
     }) async {
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
-
       if (withBackground) {
         canvas.drawRect(
           ui.Rect.fromLTWH(0, 0, canvasSize, canvasSize),
           ui.Paint()..color = brand,
         );
       }
-
       const double glyphSize = 640;
       final double scale = glyphSize / 24;
       final double offset = (canvasSize - glyphSize) / 2;
-
       final ui.Path glyph = _buildPath(commands, scale, offset);
       canvas.drawPath(
         glyph,
@@ -46,19 +32,16 @@ void main() {
           ..color = const ui.Color(0xFFFFFFFF)
           ..style = ui.PaintingStyle.fill,
       );
-
       final ui.Image image = await recorder.endRecording().toImage(
             canvasSize.toInt(),
             canvasSize.toInt(),
           );
       final ByteData? bytes =
           await image.toByteData(format: ui.ImageByteFormat.png);
-
       final File file = File(path);
       await file.parent.create(recursive: true);
       await file.writeAsBytes(bytes!.buffer.asUint8List());
     }
-
     await render(path: 'assets/icon/app_icon.png', withBackground: true);
     await render(
       path: 'assets/icon/app_icon_foreground.png',
@@ -66,19 +49,15 @@ void main() {
     );
   });
 }
-
 class _Cmd {
   const _Cmd(this.op, this.values);
-
   final String op;
   final List<double> values;
 }
-
 List<_Cmd> _parseSvgPath(String source) {
   final RegExp tokenPattern = RegExp(r'[a-zA-Z]|[-+]?(?:\d*\.\d+|\d+\.?)(?:[eE][-+]?\d+)?');
   final Iterable<Match> matches = tokenPattern.allMatches(source);
   final List<String> tokens = matches.map((Match m) => m.group(0)!).toList();
-
   final List<_Cmd> commands = <_Cmd>[];
   int i = 0;
   while (i < tokens.length) {
@@ -96,7 +75,6 @@ List<_Cmd> _parseSvgPath(String source) {
   }
   return commands;
 }
-
 int _valuesPerCommand(String op) {
   switch (op.toLowerCase()) {
     case 'm':
@@ -119,7 +97,6 @@ int _valuesPerCommand(String op) {
       throw ArgumentError('Unsupported SVG path command: $op');
   }
 }
-
 ui.Path _buildPath(List<_Cmd> commands, double scale, double offset) {
   final ui.Path path = ui.Path();
   double x = 0;
@@ -128,15 +105,12 @@ ui.Path _buildPath(List<_Cmd> commands, double scale, double offset) {
   double subY = 0;
   double lastCubicX = 0;
   double lastCubicY = 0;
-
   double sx(double v) => offset + v * scale;
   double sy(double v) => offset + v * scale;
-
   for (final _Cmd cmd in commands) {
     final bool relative = cmd.op == cmd.op.toLowerCase();
     final String op = cmd.op.toLowerCase();
     final List<double> v = cmd.values;
-
     switch (op) {
       case 'm':
         x = relative ? x + v[0] : v[0];

@@ -1,8 +1,6 @@
 package com.robatech.app.hce
-
 /** Builds the NDEF application file (E1 04) for a single RTD URI record. */
 object NdefBuilder {
-
     private val URI_PREFIXES: List<Pair<Int, String>> = listOf(
         0x01 to "http://www.",
         0x02 to "https://www.",
@@ -40,15 +38,12 @@ object NdefBuilder {
         0x22 to "urn:epc:",
         0x23 to "urn:nfc:"
     )
-
     /** TNF = 0x01 (Well Known), type = 'U' (RTD URI). */
     fun buildUriRecord(uri: String): ByteArray {
         require(uri.isNotEmpty()) { "URI must not be empty" }
-
         val best = URI_PREFIXES
             .filter { (_, prefix) -> uri.startsWith(prefix) }
             .maxByOrNull { (_, prefix) -> prefix.length }
-
         val prefixCode = best?.first ?: 0x00
         val suffix = uri.substring(best?.second?.length ?: 0)
         val suffixBytes = suffix.toByteArray(Charsets.UTF_8)
@@ -56,10 +51,8 @@ object NdefBuilder {
             it[0] = prefixCode.toByte()
             System.arraycopy(suffixBytes, 0, it, 1, suffixBytes.size)
         }
-
         return buildRecord(tnf = 0x01, typeBytes = byteArrayOf('U'.code.toByte()), payload = payload)
     }
-
     fun buildNdefFileContent(uri: String): ByteArray {
         val record = buildUriRecord(uri)
         val nlen = record.size
@@ -68,15 +61,12 @@ object NdefBuilder {
             (nlen and 0xFF).toByte()
         ) + record
     }
-
     /** Valid empty NDEF file, used when no URI is armed. */
     fun buildEmptyNdefFileContent(): ByteArray = byteArrayOf(0x00, 0x00)
-
     private fun buildRecord(tnf: Int, typeBytes: ByteArray, payload: ByteArray): ByteArray {
         val payloadLen = payload.size
         val typeLen = typeBytes.size
         return if (payloadLen <= 0xFF) {
-            // MB=1 ME=1 CF=0 SR=1 IL=0 + TNF
             val header = ByteArray(3 + typeLen).also {
                 it[0] = (0xD0 or (tnf and 0x07)).toByte()
                 it[1] = typeLen.toByte()

@@ -1,10 +1,7 @@
 package com.robatech.app.hce
-
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
-
 class CapabilityContainerTest {
-
     @Test
     fun bytesMatchType4Reference() {
         val expected = byteArrayOf(
@@ -20,7 +17,6 @@ class CapabilityContainerTest {
         )
         assertThat(CapabilityContainer.BYTES).isEqualTo(expected)
     }
-
     @Test
     fun lengthIs15Bytes() {
         assertThat(CapabilityContainer.BYTES.size).isEqualTo(15)

@@ -1,6 +1,5 @@
 import 'package:bumpshare/models/social_link.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 void main() {
   group('detectSocialPlatform', () {
     test('recognises the supported platforms from full URLs', () {
@@ -25,14 +24,12 @@ void main() {
       expect(detectSocialPlatform('https://snapchat.com/add/ada'),
           SocialPlatform.snapchat);
     });
-
     test('works without a scheme and on subdomains', () {
       expect(detectSocialPlatform('linkedin.com/in/ada'),
           SocialPlatform.linkedin);
       expect(detectSocialPlatform('m.facebook.com/ada'), SocialPlatform.facebook);
       expect(detectSocialPlatform('  github.com/ada  '), SocialPlatform.github);
     });
-
     test('lookalike domains and unknown links fall back to website', () {
       expect(detectSocialPlatform('https://notlinkedin.com/in/ada'),
           SocialPlatform.website);
@@ -43,7 +40,6 @@ void main() {
       expect(detectSocialPlatform('@ada'), SocialPlatform.website);
     });
   });
-
   group('display + href', () {
     test('display text drops scheme, www, query and trailing slash', () {
       expect(socialDisplayText('https://www.linkedin.com/in/ada/?utm=x'),
@@ -51,17 +47,14 @@ void main() {
       expect(socialDisplayText('linkedin.com/in/ada'), 'linkedin.com/in/ada');
       expect(socialDisplayText('example.com/'), 'example.com');
     });
-
     test('display text keeps unparseable input as typed', () {
       expect(socialDisplayText('@ada'), '@ada');
     });
-
     test('href adds https when missing and keeps the real URL', () {
       expect(socialHref('linkedin.com/in/ada'), 'https://linkedin.com/in/ada');
       expect(socialHref('https://x.com/ada'), 'https://x.com/ada');
     });
   });
-
   test('every platform has a label and a hint', () {
     for (final SocialPlatform platform in SocialPlatform.values) {
       expect(platform.label, isNotEmpty);

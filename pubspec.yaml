@@ -3,7 +3,6 @@ description: "BumpShare is a cross-platform contact-sharing application that mak
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
@@ -17,10 +16,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
-
 environment:
   sdk: ^3.13.5
-
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -30,43 +27,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   # Local persistence for the user's profile.
   shared_preferences: ^2.3.0
-
   # QR code generation for the no-NFC fallback.
   qr_flutter: ^4.1.0
-
   # Share files (e.g. business card image) via system share sheet.
   share_plus: ^10.1.4
-
   # Temp directory for generated image files.
   path_provider: ^2.1.3
-
   # Brand logos for social links (LinkedIn, Instagram, X, …).
   font_awesome_flutter: ^11.0.0
-
   # Open the hosted shared-profile page in the browser (receiver flow).
   url_launcher: ^6.3.2
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-
+  image_picker: ^1.2.4
+  flutter_svg: ^2.4.0
+  image_cropper: ^13.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-
   # Regenerates the platform launcher icons from assets/icon/.
   flutter_launcher_icons: ^0.14.4
-
 # Launcher icon generated from the BumpShare mark (purple #6D28D9 + NFC glyph).
 flutter_launcher_icons:
   android: true
@@ -78,29 +67,21 @@ flutter_launcher_icons:
   adaptive_icon_monochrome: "assets/icon/app_icon_foreground.png"
   remove_alpha_ios: true
   background_color_ios: "#6D28D9"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+  # Onboarding illustrations (descriptive images replacing the icon).
+  assets:
+    - assets/onboarding/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

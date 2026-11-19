@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../models/social_link.dart';
-
-/// Brand mark for a detected [SocialPlatform], drawn as a coloured tile.
-///
-/// The mark is what the user recognises: a LinkedIn link shows the LinkedIn
-/// glyph, Instagram the camera mark, X the X, and so on.
 class SocialBadge extends StatelessWidget {
   const SocialBadge({
     super.key,
@@ -14,17 +8,14 @@ class SocialBadge extends StatelessWidget {
     this.size = 40,
     this.showBackground = true,
   });
-
   final SocialPlatform platform;
   final double size;
   final bool showBackground;
-
   @override
   Widget build(BuildContext context) {
     final ColorScheme colors = Theme.of(context).colorScheme;
     final Color background = _background(colors);
     final Color foreground = showBackground ? _foreground : background;
-
     return Container(
       width: size,
       height: size,
@@ -44,7 +35,6 @@ class SocialBadge extends StatelessWidget {
       ),
     );
   }
-
   FaIconData get _icon => switch (platform) {
         SocialPlatform.linkedin => FontAwesomeIcons.linkedinIn,
         SocialPlatform.instagram => FontAwesomeIcons.instagram,
@@ -59,7 +49,6 @@ class SocialBadge extends StatelessWidget {
         SocialPlatform.snapchat => FontAwesomeIcons.snapchat,
         SocialPlatform.website => FontAwesomeIcons.globe,
       };
-
   Color _background(ColorScheme colors) => switch (platform) {
         SocialPlatform.linkedin => const Color(0xFF0A66C2),
         SocialPlatform.instagram => const Color(0xFFE1306C),
@@ -74,15 +63,11 @@ class SocialBadge extends StatelessWidget {
         SocialPlatform.snapchat => const Color(0xFFFFFC00),
         SocialPlatform.website => colors.primary,
       };
-
-  /// Icon colour that stays readable on the brand background.
   Color get _foreground => switch (platform) {
         SocialPlatform.snapchat => const Color(0xFF111111),
         SocialPlatform.whatsapp => Colors.white,
         _ => Colors.white,
       };
-
-  /// Instagram is the one brand whose mark is a gradient.
   Gradient? get _gradient => platform == SocialPlatform.instagram
       ? const LinearGradient(
           begin: Alignment.bottomLeft,

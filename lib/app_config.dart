@@ -1,6 +1,14 @@
-/// Configuration for the hosted BumpShare profile page.
-///
-/// The sender shares a self-contained HTTPS link over NFC. The page decodes the
-/// profile from the URL fragment, so no backend, account or database is needed.
-/// Change this one value to your own deployment before publishing.
-const String kProfileBaseUrl = 'https://bumpshare.vercel.app/';
+import 'dart:ui';
+const String kProfileBaseUrl = 'https://bumbshare.vercel.app/';
+const List<int> kAccentColors = <int>[
+  0xFF6D28D9, // purple
+  0xFF0F766E, // teal
+  0xFFBE123C, // rose
+  0xFF4338CA, // indigo
+];
+Color accentColor(int index) {
+  final int safe = index < 0
+      ? 0
+      : (index >= kAccentColors.length ? kAccentColors.length - 1 : index);
+  return Color(kAccentColors[safe]);
+}
